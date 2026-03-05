@@ -66,28 +66,56 @@ function applyCream(input: HTMLInputElement): void {
 }
 
 function applySyrup(input: HTMLInputElement): void {
-  // TODO: implement this function
+  const syrupElements = document.getElementsByClassName("syrup");
+  if(syrupElements.length === 0) return;
+
+  const syrupDiv = syrupElements[0] as HTMLDivElement;
+
+  const color = syrups[input.value];
+  if (!color) return;
+
+  syrupDiv.style.setProperty("--syrup-color", color);
 }
 
 function setupSyrupListeners(): void {
-  // TODO: implement this function
+  const radios = document.querySelectorAll('input[name="syrup"]');
+  for( let i = 0; i < radios.length; i++) {
+    const radio = radios[i] as HTMLInputElement;
+    radio.addEventListener("change", function() { applySyrup(radio) });
+    if (radio.checked) applySyrup(radio);
+  }
 }
 
 setupSyrupListeners();
 
 function setupCreamListeners(): void {
-  // TODO: implement this function
+  const radios = document.querySelectorAll('input[name="cream"]');
+  for (let i = 0; i < radios.length; i++) {
+    const radio = radios[i] as HTMLInputElement;
+    radio.addEventListener("change", function() { applyCream(radio) });
+    if (radio.checked) applyCream(radio);
+  }
 }
 setupCreamListeners();
 
 function setupTemperatureListeners(): void {
-  // TODO: implement this function
+  const radios = document.querySelectorAll('input[name="temperature"]');
+  for (let i = 0; i < radios.length; i++) {
+    const radio = radios[i] as HTMLInputElement;
+    radio.addEventListener("change", function() { applyTemperature(radio) });
+    if (radio.checked) applyTemperature(radio);
+  }
 }
 
 setupTemperatureListeners();
 
 function setupBaseListeners(): void {
-  // TODO: implement this function
+  const radios = document.querySelectorAll('input[name="base"]');
+  for (let i = 0; i < radios.length; i++) {
+    const radio = radios[i] as HTMLInputElement;
+    radio.addEventListener("change", function() { applyBase(radio) });
+    if (radio.checked) applyBase(radio);
+  }
 }
 
 setupBaseListeners();
